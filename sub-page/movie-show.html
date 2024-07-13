@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/style/movie-show.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <title>Movie-Show</title>
+</head>
+<body>
+    <div class="loader-container">
+        <img src="/assets/img/eyes-gì.gif" alt="Loading..." class="loader">
+    </div>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-top-logo">
+                <img src="/assets/img/cinema-glasses.png" alt="">
+            </div>
+            <div class="header-top-content">
+                <h1><span class="special-text">Meg</span>Movie</h1>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <ul>
+                <li id="home"><a href="/index.html">Trang Chủ</a></li>
+                <li id="cartoon-movie"><a href="cartoon-movie.html">Phim Hoạt Hình</a></li>
+                <li id="theater-movies"><a href="theater-movies.html">Phim Chiếu Rạp</a></li>
+                <li id="single-movies"><a href="single-movies.html">Phim Lẻ</a></li>
+                <li id="series-movies"><a href="series-movies.html">Phim Bộ</a></li>
+            </ul>
+            <form id="search-form">
+                <input type="text" placeholder="Phim muốn xem..." id="search-input" />
+                <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="movie-rcm">
+                    <a data-id="${element.slug}" class="card-mvsg">
+                        <div class="img-mvsg">
+                            <img src="https://img.phimapi.com/${element.poster_url}" alt="${element.name}">
+                        </div>
+                        <div class="name-mvsg">
+                            <p>${element.name}</p>
+                        </div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="go-back container">
+        <a href="javascript:void(0);" onclick="goBack()"><h1> <i class="fa-solid fa-arrow-left"></i>Back</h1></a>
+    </div>
+    <div id="movie-container" class="container">
+        <div class="movie-info">
+            <h2 id="movie-title">Tên Phim - Tập ? <!--Tập bao nhiêu--> </h2>
+        </div>
+        <div class="ec-title">
+            <div class="content-movie color-1">
+                <h2>Nội dung</h2>
+            </div>
+            <div class="summary-movie">
+                <p id="movie-content"></p>
+            </div>
+        </div>
+        <div class="video-player">
+            <iframe id="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <!-- Phần danh sách tập phim -->
+        <div class="episode-content">
+            <div class="ec-title">
+                <div class="watch-movie color-1">
+                    <h2>Danh sách tập phim</h2>
+                </div>
+                <div class="list-episode">
+                    <div class="box-number" id="episode-list">
+                        <!-- Các thẻ <a> sẽ được thêm bằng JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="/assets/js/loading.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/goback.js"></script>
+    <script src="/assets/js/search.js"></script>
+
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const filmId = urlParams.get('id');
+        let currentEpisodeIndex = parseInt(urlParams.get('episode')) || 0; // Lấy chỉ số tập phim từ URL, mặc định là 0 nếu không có
+
+        // Hàm load chi tiết phim
+        function getMovieDetails() {
+            fetch(`https://phimapi.com/phim/${filmId}`)
+                .then(res => res.json())
+                .then(data => {
+                    // Cập nhật tiêu đề và nội dung phim
+                    document.getElementById('movie-title').textContent = `${data.movie.name} - Tập ${currentEpisodeIndex + 1}`;
+                    document.getElementById('movie-content').textContent = data.movie.content;
+                    
+                    // Xử lý danh sách tập phim
+                    const episodeList = document.getElementById('episode-list');
+                    episodeList.innerHTML = data.episodes[0].server_data.map((server, index) => {
+                        const isActive = index === currentEpisodeIndex ? 'active' : '';
+                        return `<a href="#" onclick="loadEpisode('${filmId}', ${index})" data-index="${index}" class="watch-now-button ${isActive}">Tập ${index + 1}</a>`;
+                    }).join('');
+                    
+                    // Mặc định hiển thị tập phim được chọn
+                    loadEpisode(filmId, currentEpisodeIndex);
+                });
+        }
+
+        // Hàm load tập phim
+        function loadEpisode(filmId, episodeIndex) {
+            fetch(`https://phimapi.com/phim/${filmId}`)
+                .then(res => res.json())
+                .then(data => {
+                    // Kiểm tra nếu episodeIndex không hợp lệ thì sẽ load tập đầu tiên
+                    if (episodeIndex < 0 || episodeIndex >= data.episodes[0].server_data.length) {
+                        episodeIndex = 0;
+                    }
+
+                    // Hiển thị tập phim tương ứng trong iframe
+                    const iframe = document.getElementById('video-iframe');
+                    iframe.src = data.episodes[0].server_data[episodeIndex].link_embed;
+
+                    // Highlight nút tập phim được chọn
+                    const buttons = document.querySelectorAll('.watch-now-button');
+                    buttons.forEach((button, index) => {
+                        button.classList.remove('active');
+                        if (index === episodeIndex) {
+                            button.classList.add('active');
+                        }
+                    });
+
+    
+                    currentEpisodeIndex = episodeIndex;
+
+                    // Cập nhật lại tiêu đề phim với tập đang xem
+                    document.getElementById('movie-title').textContent = `${data.movie.name} - Tập ${currentEpisodeIndex + 1}`;
+                });
+        }
+
+        // Load chi tiết phim khi trang được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            getMovieDetails();
+        });
+    </script>
+
+</body>
+</html>

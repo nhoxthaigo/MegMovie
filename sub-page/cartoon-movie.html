@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/style/cartoon-movie.css">
+    <link rel="stylesheet" href="/assets/style/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+    <title>Meg-Movie-Cartoon</title>
+</head>
+<body>
+    <div class="loader-container">
+        <img src="/assets/img/eyes-gì.gif" alt="Loading..." class="loader">
+    </div>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-top-logo">
+                <img src="/assets/img/Logo3-removebg-preview.png" alt="">
+            </div>
+            <div class="header-top-content">
+                <h1><span class="special-text">Meg</span>Movie</h1>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <ul>
+                <li id="home"><a href="/index.html">Trang Chủ</a></li>
+                <li id="cartoon-movie"><a href="cartoon-movie.html">Phim Hoạt Hình</a></li>
+                <li id="theater-movies"><a href="theater-movies.html">TV Shows</a></li>
+                <li id="single-movies"><a href="single-movies.html">Phim Lẻ</a></li>
+                <li id="series-movies"><a href="series-movies.html">Phim Bộ</a></li>
+            </ul>
+            <form id="search-form">
+                <input type="text" placeholder="Phim muốn xem..." id="search-input" />
+                <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="movie-rcm">
+                    <a data-id="${element.slug}" class="card-mvsg">
+                        <div class="img-mvsg">
+                            <img src="https://img.phimapi.com/${element.poster_url}" alt="${element.name}">
+                        </div>
+                        <div class="name-mvsg">
+                            <p>${element.name}</p>
+                        </div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <div class="container max-l-box">
+        <div class="header-content max-l-box">
+            <h1><i class="fa-solid fa-list"></i>Danh Sách Phim Hoạt Hình</h1>
+            <p id="current-page">Trang 1</p>
+        </div>
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper" id="slide-img">
+              
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+          
+            <!-- If we need navigation buttons -->
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
+          
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+          </div>
+        <div class="rowCartoon" id="movie-list">
+            <!-- Danh sách phim sẽ được hiển thị ở đây -->
+        </div>
+        <div id="pagination-cartoon" class="pagination max-l-box">
+            <!-- Phân trang sẽ được hiển thị ở đây -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-row max-l-box">
+            <div class="footer-col">
+                <div class="footer-text">
+                <h3><span class="special-text">Meg</span>Movie</h3>
+                </div>
+                <p>Một web xem phim nho nhỏ giành tặng cho bản thân,<br>
+                     gia đình và bạn bè một khoảng thời gian nhỏ để thư giãn
+                    <br> chúc mn có một ngày thật tuyệt  <i class="fa-solid fa-heart red-heart"></i> <i class="fa-solid fa-heart red-heart"></i> <i class="fa-solid fa-heart red-heart"></i> </p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-phone far"></i>Hotline:<br>
+                            0906834103
+                        </li>
+                        <li><i class="fa-solid fa-envelope far"></i>Email:<br>
+                             thaithai036@gmail.com</li>
+                    </ul>
+
+                </div>
+                
+            </div>
+            <div class="footer-col">
+                <div class="footer-send-social">
+                    <h3>Newsletter</h3>
+                <form action="">
+                    <i class="far fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="Enter your email id" required>
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                </div>
+
+            </div>
+            <div class="footer-col">
+                
+                <h3>Social Account</h3>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=100013846539980"><i class="fa-brands fa-facebook big-far"></i></a>
+                    <a href="https://www.instagram.com/_quoctthaii/"><i class="fa-brands fa-instagram big-far"></i></a>
+                    <a href="https://www.linkedin.com/in/pham-thai-8b150a309/"><i class="fa-brands fa-linkedin big-far"></i></a>
+                    <a href="https://github.com/nhoxthaigo"><i class="fa-brands fa-github big-far"></i></a>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="line"></div>
+        <p class="Copyright">Copyright By Quoc Thai - 2024</p>
+    </footer>
+    <script src="/assets/js/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js//cartoon-api.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/paginationCartoon.js"></script>
+</body>
+</html>

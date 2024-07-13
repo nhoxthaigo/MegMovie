@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/style/detailPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Meg-Movie-Details</title>
+</head>
+<body>
+    <div class="loader-container">
+        <img src="/assets/img/eyes-gì.gif" alt="Loading..." class="loader">
+    </div>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-top-logo">
+                <img src="/assets/img/cinema-glasses.png" alt="">
+            </div>
+            <div class="header-top-content">
+                <h1><span class="special-text">Meg</span>Movie</h1>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <ul>
+                <li id="home"><a href="/index.html">Trang Chủ</a></li>
+                <li id="cartoon-movie"><a href="cartoon-movie.html">Phim Hoạt Hình</a></li>
+                <li id="theater-movies"><a href="theater-movies.html">Phim Chiếu Rạp</a></li>
+                <li id="single-movies"><a href="single-movies.html">Phim Lẻ</a></li>
+                <li id="series-movies"><a href="series-movies.html">Phim Bộ</a></li>
+            </ul>
+            <form id="search-form">
+                <input type="text" placeholder="Phim muốn xem..." id="search-input" />
+                <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="movie-rcm">
+                    <a data-id="${element.slug}" class="card-mvsg">
+                        <div class="img-mvsg">
+                            <img src="https://img.phimapi.com/${element.poster_url}" alt="${element.name}">
+                        </div>
+                        <div class="name-mvsg">
+                            <p>${element.name}</p>
+                        </div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="go-back container">
+        <a href="javascript:void(0);" onclick="goBack()"><h1> <i class="fa-solid fa-arrow-left"></i>Back</h1></a>
+    </div>
+    <div id="detail-box" class="container">
+        <!-- Thông tin chi tiết phim sẽ được hiển thị ở đây -->
+    </div>
+    <script src="/assets/js/loading.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/detailPage.js"></script>
+    <script src="/assets/js/gobackhome.js"></script>
+    <script src="/assets/js/search.js"></script>
+</body>
+</html>
