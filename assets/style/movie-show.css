@@ -221,6 +221,10 @@ body
     overflow-y: scroll;
     margin-bottom: 10px;
 }
+.episode-content
+{
+    margin-bottom: 40px;
+}
 
 .ec-title {
     margin-bottom: 30px;
@@ -355,13 +359,29 @@ body
 @media (max-width: 768px) {
     .header
     {
-        width: auto;
+        width: 430px;
         margin-left: auto;
         margin-right: auto;
     }
+    .header-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px 50px 0px;
+        font-size: 32px;
+        font-family: cursive !important;
+    }
+    .header-top img 
+    {
+        width: 100px;
+    }
+    .header-top h1
+    {
+        font-size: 30px;
+    }
     .header-bottom {
         flex-direction: column;
-        width:  100%;
+        width:  430px;
     }
 
     .header-bottom ul {
@@ -382,7 +402,7 @@ body
 
     .header-bottom form {
         width: 50%;
-        margin-top: 20px;
+        margin: 20px 0 0 0;
     }
 
     .header-bottom input {
@@ -392,8 +412,42 @@ body
     .header-bottom button {
         width: 50px;
     }
+    .header-content
+    {
+        padding: 0 20px;
+        margin-top: 100px;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        width: 80%;
+        margin-bottom: 30px;
+    }
+
+    .movie-rcm {
+        top: 70px;
+    }
+    .container
+    {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    .max-l-box
+    {
+        width: 100%;
+    }
     .go-back
     {
+        display: block;
     margin-top: 0;
     }
     .container {
@@ -409,7 +463,7 @@ body
         justify-content: center;
     }
     .video-player iframe {
-        width: 640px;
+        width: 100%;
         height:360px;    ;
         border: none;
         margin-bottom: 40px;
@@ -419,5 +473,9 @@ body
         line-height: 1.6;
         font-size: 14px;
     }
+    .episode-content
+{
+    margin-bottom: 40px;
+}
     
 }
