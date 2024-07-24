@@ -192,6 +192,8 @@ body
 }
 
 .movie-info h2 {
+    text-transform: uppercase;
+    font-style: italic;
     font-size: 36px;
     margin-bottom: 10px;
     color: var(--header);
