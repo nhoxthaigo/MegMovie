@@ -120,7 +120,7 @@
                 fetch(`https://phimapi.com/phim/${filmId}`)
                     .then(res => res.json())
                     .then(data => {
-                        // Kiểm tra nếu episodeIndex không hợp lệ thì sẽ load tập đầu tiên
+                        // Kiểm tra nếu episodeindex không hợp lệ thì sẽ load tập đầu tiên
                         if (episodeIndex < 0 || episodeIndex >= data.episodes[0].server_data.length) {
                             episodeIndex = 0;
                         }
